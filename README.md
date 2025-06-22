@@ -8,8 +8,8 @@ Each article is stored as a standalone `.md` file inside the `articles/` directo
 
 | Path                                  | Description                                |
 |---------------------------------------|--------------------------------------------|
-| [`articles/interview-cheatsheet-java`](./articles/interview-cheatsheet-java.md)   | Java syntax, data structures, and algorithms for interviews |
-| [`articles/interview-cheatsheet-csharp`](./articles/interview-cheatsheet-csharp.md) | C# fundamentals and patterns used in technical interviews (coming soon) |
+| [`articles/interview-cheatsheet-java`](./interview-cheatsheet-java.md)   | Java syntax, data structures, and algorithms for interviews |
+| [`articles/interview-cheatsheet-csharp`](./interview-cheatsheet-csharp.md) | C# fundamentals and patterns used in technical interviews (coming soon) |
 
 ## ✨ How to Use
 
