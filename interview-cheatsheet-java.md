@@ -406,3 +406,49 @@ while (!q.isEmpty()) {
 }
 // 0 1 2
 ```
+
+---
+
+### ✅ Graph using Adjacency Matrix (DFS/BFS)
+
+```java
+void dfsMatrix(int[][] graph, int node, boolean[] visited) {
+    if (visited[node]) return;
+    visited[node] = true;
+    System.out.print(node + " ");
+    for (int i = 0; i < graph.length; i++) {
+        if (graph[node][i] == 1 && !visited[i]) {
+            dfsMatrix(graph, i, visited);
+        }
+    }
+}
+
+void bfsMatrix(int[][] graph, int start) {
+    boolean[] visited = new boolean[graph.length];
+    Queue<Integer> queue = new LinkedList<>();
+    queue.offer(start);
+    visited[start] = true;
+
+    while (!queue.isEmpty()) {
+        int node = queue.poll();
+        System.out.print(node + " ");
+        for (int i = 0; i < graph.length; i++) {
+            if (graph[node][i] == 1 && !visited[i]) {
+                queue.offer(i);
+                visited[i] = true;
+            }
+        }
+    }
+}
+
+// Usage:
+int[][] graph = {
+    {0, 1, 1, 0},
+    {1, 0, 1, 1},
+    {1, 1, 0, 0},
+    {0, 1, 0, 0}
+};
+boolean[] visited = new boolean[4];
+dfsMatrix(graph, 0, visited);  // 0 1 2 3
+bfsMatrix(graph, 0);           // 0 1 2 3
+```
