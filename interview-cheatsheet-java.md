@@ -1,6 +1,7 @@
 ## Java Coding Interview Cheatsheet
 
 ### ✅ Datatypes and Variables
+
 ```java
 // Integer types
 byte a = 10;                // -128 to 127
@@ -20,6 +21,7 @@ boolean isJavaFun = true;  // true or false
 ---
 
 ### ✅ Conditionals
+
 ```java
 if (x > 0) {
     System.out.println("positive");
@@ -49,6 +51,7 @@ if (a > 0 && b > 0) {
 ---
 
 ### ✅ Arrays
+
 ```java
 int[] nums = new int[5];
 int[] fixed = {1, 2, 3};
@@ -59,7 +62,9 @@ Arrays.sort(fixed);   // fixed = [1, 2, 3]
 int idx = Arrays.binarySearch(fixed, 2); // idx = 1
 String str = Arrays.toString(fixed);     // "[1, 2, 3]"
 ```
+
 Iteration:
+
 ```java
 for (int i = 0; i < nums.length; i++) { System.out.print(nums[i] + " "); }
 for (int num : nums) { System.out.print(num + " "); }
@@ -68,6 +73,7 @@ for (int num : nums) { System.out.print(num + " "); }
 ---
 
 ### ✅ LinkedList
+
 ```java
 LinkedList<Integer> list = new LinkedList<>();
 list.addFirst(10);       // [10]
@@ -79,7 +85,9 @@ System.out.println(list.get(0));        // 20
 System.out.println(list.contains(20)); // true
 System.out.println(list.size());       // 1
 ```
+
 Iteration:
+
 ```java
 for (int val : list) {
     System.out.print(val + " ");
@@ -89,6 +97,7 @@ for (int val : list) {
 ---
 
 ### ✅ Stack
+
 ```java
 Stack<Integer> stack = new Stack<>();
 stack.push(10);                    // [10]
@@ -105,6 +114,7 @@ for (int val : stack) {
 ---
 
 ### ✅ Queue / ArrayDeque
+
 ```java
 Queue<String> q = new ArrayDeque<>();
 q.offer("A");             // [A]
@@ -121,6 +131,7 @@ for (String s : q) {
 ---
 
 ### ✅ Set / HashSet
+
 ```java
 Set<String> set = new HashSet<>();
 set.add("apple");               // [apple]
@@ -137,6 +148,7 @@ for (String s : set) {
 ---
 
 ### ✅ TreeSet
+
 ```java
 TreeSet<Integer> ts = new TreeSet<>();
 ts.add(10);                // [10]
@@ -151,7 +163,9 @@ for (int val : ts) {
     System.out.print(val + " ");
 }
 ```
+
 Custom:
+
 ```java
 TreeSet<Integer> desc = new TreeSet<>((a,b)->b-a);
 desc.add(5); desc.add(10); desc.add(1);
@@ -161,6 +175,7 @@ System.out.println(desc); // [10, 5, 1]
 ---
 
 ### ✅ Map / HashMap
+
 ```java
 Map<String, Integer> map = new HashMap<>();
 map.put("a", 1);              // {a=1}
@@ -178,6 +193,7 @@ for (Map.Entry<String, Integer> e : map.entrySet()) {
 ---
 
 ### ✅ PriorityQueue
+
 ```java
 PriorityQueue<Integer> minHeap = new PriorityQueue<>();
 minHeap.add(3);    // [3]
@@ -197,6 +213,7 @@ System.out.println(maxHeap.poll()); // 3
 ```
 
 Custom object:
+
 ```java
 class Task {
     int deadline, duration;
@@ -208,6 +225,7 @@ PriorityQueue<Task> pq = new PriorityQueue<>((a,b)->a.deadline - b.deadline);
 ---
 
 ### ✅ TrieNode and Trie
+
 ```java
 class TrieNode {
     TrieNode[] children = new TrieNode[26];
@@ -256,3 +274,97 @@ trie.dfs(trie.root, ""); // Outputs: car, cat, dog
 ```
 
 ---
+
+### ✅ TreeNode and Tree Traversal
+
+```java
+class TreeNode {
+    int val;
+    TreeNode left, right;
+    TreeNode(int val) { this.val = val; }
+}
+
+// Create tree:
+TreeNode root = new TreeNode(1);
+root.left = new TreeNode(2);
+root.right = new TreeNode(3);
+root.left.left = new TreeNode(4);
+root.left.right = new TreeNode(5);
+
+DFS (Pre-order):
+
+void dfs(TreeNode root) {
+    if (root == null) return;
+    System.out.print(root.val + " ");
+    dfs(root.left);
+    dfs(root.right);
+}
+dfs(root); // Output: 1 2 4 5 3
+
+BFS (Level-order):
+
+Queue<TreeNode> q = new LinkedList<>();
+q.offer(root);
+while (!q.isEmpty()) {
+    TreeNode node = q.poll();
+    System.out.print(node.val + " ");
+    if (node.left != null) q.offer(node.left);
+    if (node.right != null) q.offer(node.right);
+}
+// Output: 1 2 3 4 5
+```
+
+---
+
+### ✅ Graph using Adjacency List and BFS/DFS
+
+```java
+class GraphNode {
+    int val;
+    List<GraphNode> neighbors;
+    GraphNode(int val) {
+        this.val = val;
+        neighbors = new ArrayList<>();
+    }
+}
+
+// Create graph
+GraphNode node0 = new GraphNode(0);
+GraphNode node1 = new GraphNode(1);
+GraphNode node2 = new GraphNode(2);
+node0.neighbors.add(node1);
+node0.neighbors.add(node2);
+node1.neighbors.add(node2);
+
+DFS:
+
+Set<GraphNode> visited = new HashSet<>();
+void dfs(GraphNode node) {
+    if (node == null || visited.contains(node)) return;
+    visited.add(node);
+    System.out.print(node.val + " ");
+    for (GraphNode nei : node.neighbors) {
+        dfs(nei);
+    }
+}
+dfs(node0); // Output: 0 1 2
+
+BFS:
+
+Queue<GraphNode> q = new LinkedList<>();
+Set<GraphNode> visitedBFS = new HashSet<>();
+q.offer(node0);
+visitedBFS.add(node0);
+
+while (!q.isEmpty()) {
+    GraphNode curr = q.poll();
+    System.out.print(curr.val + " ");
+    for (GraphNode nei : curr.neighbors) {
+        if (!visitedBFS.contains(nei)) {
+            visitedBFS.add(nei);
+            q.offer(nei);
+        }
+    }
+}
+// Output: 0 1 2
+```
