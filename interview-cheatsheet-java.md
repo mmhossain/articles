@@ -1,7 +1,6 @@
-## Coding Interview Cheatsheet - Java
+## Java Coding Interview Cheatsheet
 
 ### ✅ Datatypes and Variables
-
 ```java
 // Integer types
 byte a = 10;                // -128 to 127
@@ -21,7 +20,6 @@ boolean isJavaFun = true;  // true or false
 ---
 
 ### ✅ Conditionals
-
 ```java
 if (x > 0) {
     System.out.println("positive");
@@ -51,7 +49,6 @@ if (a > 0 && b > 0) {
 ---
 
 ### ✅ Arrays
-
 ```java
 int[] nums = new int[5];
 int[] fixed = {1, 2, 3};
@@ -62,9 +59,7 @@ Arrays.sort(fixed);   // fixed = [1, 2, 3]
 int idx = Arrays.binarySearch(fixed, 2); // idx = 1
 String str = Arrays.toString(fixed);     // "[1, 2, 3]"
 ```
-
 Iteration:
-
 ```java
 for (int i = 0; i < nums.length; i++) { System.out.print(nums[i] + " "); }
 for (int num : nums) { System.out.print(num + " "); }
@@ -73,7 +68,6 @@ for (int num : nums) { System.out.print(num + " "); }
 ---
 
 ### ✅ LinkedList
-
 ```java
 LinkedList<Integer> list = new LinkedList<>();
 list.addFirst(10);       // [10]
@@ -85,9 +79,7 @@ System.out.println(list.get(0));        // 20
 System.out.println(list.contains(20)); // true
 System.out.println(list.size());       // 1
 ```
-
 Iteration:
-
 ```java
 for (int val : list) {
     System.out.print(val + " ");
@@ -97,7 +89,6 @@ for (int val : list) {
 ---
 
 ### ✅ Stack
-
 ```java
 Stack<Integer> stack = new Stack<>();
 stack.push(10);                    // [10]
@@ -114,7 +105,6 @@ for (int val : stack) {
 ---
 
 ### ✅ Queue / ArrayDeque
-
 ```java
 Queue<String> q = new ArrayDeque<>();
 q.offer("A");             // [A]
@@ -131,7 +121,6 @@ for (String s : q) {
 ---
 
 ### ✅ Set / HashSet
-
 ```java
 Set<String> set = new HashSet<>();
 set.add("apple");               // [apple]
@@ -148,7 +137,6 @@ for (String s : set) {
 ---
 
 ### ✅ TreeSet
-
 ```java
 TreeSet<Integer> ts = new TreeSet<>();
 ts.add(10);                // [10]
@@ -163,9 +151,7 @@ for (int val : ts) {
     System.out.print(val + " ");
 }
 ```
-
 Custom:
-
 ```java
 TreeSet<Integer> desc = new TreeSet<>((a,b)->b-a);
 desc.add(5); desc.add(10); desc.add(1);
@@ -175,7 +161,6 @@ System.out.println(desc); // [10, 5, 1]
 ---
 
 ### ✅ Map / HashMap
-
 ```java
 Map<String, Integer> map = new HashMap<>();
 map.put("a", 1);              // {a=1}
@@ -193,7 +178,6 @@ for (Map.Entry<String, Integer> e : map.entrySet()) {
 ---
 
 ### ✅ PriorityQueue
-
 ```java
 PriorityQueue<Integer> minHeap = new PriorityQueue<>();
 minHeap.add(3);    // [3]
@@ -213,7 +197,6 @@ System.out.println(maxHeap.poll()); // 3
 ```
 
 Custom object:
-
 ```java
 class Task {
     int deadline, duration;
@@ -225,7 +208,6 @@ PriorityQueue<Task> pq = new PriorityQueue<>((a,b)->a.deadline - b.deadline);
 ---
 
 ### ✅ TrieNode and Trie
-
 ```java
 class TrieNode {
     TrieNode[] children = new TrieNode[26];
