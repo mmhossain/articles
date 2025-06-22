@@ -15,7 +15,7 @@ double f = 19.99;           // ~±1.7e−308 to ±1.7e+308
 
 // Character and Boolean
 char g = 'A';               // Unicode: 0 to 65,535
-boolean isJavaFun = true;  // true or false
+boolean isJavaFun = true;   // true or false
 ```
 
 ---
@@ -38,7 +38,7 @@ switch (day) {
 
 int max = (a > b) ? a : b; // ternary
 
-// Logical operators example
+// Logical operators
 if (a > 0 && b > 0) {
     System.out.println("Both positive");
 } else if (a > 0 || b > 0) {
@@ -63,6 +63,33 @@ int idx = Arrays.binarySearch(fixed, 2); // idx = 1
 String str = Arrays.toString(fixed);     // "[1, 2, 3]"
 ```
 
+---
+
+### ✅ Strings
+
+```java
+String s = "hello world";
+s.length();                 // 11
+s.charAt(0);                // h
+s.substring(1, 5);          // ello
+s.toLowerCase();            // hello world
+s.toUpperCase();            // HELLO WORLD
+s.equals("hello");          // false
+s.contains("world");        // true
+s.startsWith("he");         // true
+s.endsWith("ld");           // true
+s.indexOf("l");             // 2
+s.lastIndexOf("l");         // 9
+s.replace("l", "L");        // heLLo worLd
+s.isEmpty();                // false
+String[] parts = s.split(" ");  // ["hello", "world"]
+
+StringBuilder sb = new StringBuilder();
+sb.append("hi");
+sb.append(" there");
+System.out.println(sb.toString());  // hi there
+```
+
 Iteration:
 
 ```java
@@ -81,7 +108,7 @@ list.addLast(20);        // [10, 20]
 list.add(15);            // [10, 20, 15]
 list.removeFirst();      // [20, 15]
 list.removeLast();       // [20]
-System.out.println(list.get(0));        // 20
+System.out.println(list.get(0));       // 20
 System.out.println(list.contains(20)); // true
 System.out.println(list.size());       // 1
 ```
@@ -100,14 +127,15 @@ for (int val : list) {
 
 ```java
 Stack<Integer> stack = new Stack<>();
-stack.push(10);                    // [10]
-stack.push(20);                    // [10, 20]
-System.out.println(stack.peek()); // 20
-System.out.println(stack.pop());  // 20 => [10]
-System.out.println(stack.isEmpty()); // false
+stack.push(10); // [10]
+stack.push(20); // [10, 20]
+stack.push(30); // [10, 20, 30]
+System.out.println(stack.peek());       // 30
+System.out.println(stack.pop());        // 30 => [10, 20]
+System.out.println(stack.isEmpty());    // false
 
-for (int val : stack) {
-    System.out.print(val + " ");
+while (!stack.isEmpty()) {
+    System.out.print(stack.pop() + " ");  // 20 10
 }
 ```
 
@@ -119,12 +147,13 @@ for (int val : stack) {
 Queue<String> q = new ArrayDeque<>();
 q.offer("A");             // [A]
 q.offer("B");             // [A, B]
+q.offer("C");             // [A, B, C]
 System.out.println(q.peek()); // A
-System.out.println(q.poll()); // A => [B]
+System.out.println(q.poll()); // A => [B, C]
 System.out.println(q.isEmpty()); // false
 
-for (String s : q) {
-    System.out.print(s + " ");
+while (!q.isEmpty()) {
+    System.out.print(q.poll() + " ");  // B C
 }
 ```
 
@@ -134,10 +163,10 @@ for (String s : q) {
 
 ```java
 Set<String> set = new HashSet<>();
-set.add("apple");               // [apple]
-set.add("banana");              // [apple, banana]
-System.out.println(set.contains("apple")); // true
-set.remove("banana");           // [apple]
+set.add("apple");       // [apple]
+set.add("banana");      // [apple, banana]
+set.contains("apple");  // true
+set.remove("banana");   // [apple]
 System.out.println(set.size()); // 1
 
 for (String s : set) {
@@ -168,7 +197,9 @@ Custom:
 
 ```java
 TreeSet<Integer> desc = new TreeSet<>((a,b)->b-a);
-desc.add(5); desc.add(10); desc.add(1);
+desc.add(5);
+desc.add(10);
+desc.add(1);
 System.out.println(desc); // [10, 5, 1]
 ```
 
@@ -178,12 +209,12 @@ System.out.println(desc); // [10, 5, 1]
 
 ```java
 Map<String, Integer> map = new HashMap<>();
-map.put("a", 1);              // {a=1}
-map.put("b", 2);              // {a=1, b=2}
-System.out.println(map.get("a"));          // 1
-System.out.println(map.containsKey("b")); // true
-map.remove("b");              // {a=1}
-System.out.println(map.size());           // 1
+map.put("a", 1);    // {a=1}
+map.put("b", 2);    // {a=1, b=2}
+System.out.println(map.get("a"));           // 1
+System.out.println(map.containsKey("b"));   // true
+map.remove("b");    // {a=1}
+System.out.println(map.size()); // 1
 
 for (Map.Entry<String, Integer> e : map.entrySet()) {
     System.out.println(e.getKey() + " -> " + e.getValue());
@@ -201,8 +232,8 @@ minHeap.add(1);    // [1, 3]
 minHeap.add(2);    // [1, 3, 2]
 System.out.println(minHeap.poll()); // 1 => [2, 3]
 
-for (int val : minHeap) {
-    System.out.print(val + " ");
+while (!minHeap.isEmpty()) {
+    System.out.print(minHeap.poll() + " ");  // 2 3
 }
 
 PriorityQueue<Integer> maxHeap = new PriorityQueue<>((a,b)->b-a);
@@ -210,6 +241,10 @@ maxHeap.add(3);
 maxHeap.add(1);
 maxHeap.add(2);
 System.out.println(maxHeap.poll()); // 3
+
+while (!maxHeap.isEmpty()) {
+    System.out.print(maxHeap.poll() + " ");  // 2 1
+}
 ```
 
 Custom object:
@@ -219,7 +254,7 @@ class Task {
     int deadline, duration;
     Task(int d, int t) { deadline = d; duration = t; }
 }
-PriorityQueue<Task> pq = new PriorityQueue<>((a,b)->a.deadline - b.deadline);
+PriorityQueue<Task> pq = new PriorityQueue<>((a,b) -> a.deadline - b.deadline);
 ```
 
 ---
@@ -270,7 +305,7 @@ Trie trie = new Trie();
 trie.insert("cat");
 trie.insert("car");
 trie.insert("dog");
-trie.dfs(trie.root, ""); // Outputs: car, cat, dog
+trie.dfs(trie.root, ""); // car, cat, dog
 ```
 
 ---
@@ -299,19 +334,21 @@ void dfs(TreeNode root) {
     dfs(root.left);
     dfs(root.right);
 }
-dfs(root); // Output: 1 2 4 5 3
+
+dfs(root); // 1 2 4 5 3
 
 BFS (Level-order):
 
 Queue<TreeNode> q = new LinkedList<>();
 q.offer(root);
+
 while (!q.isEmpty()) {
     TreeNode node = q.poll();
     System.out.print(node.val + " ");
     if (node.left != null) q.offer(node.left);
     if (node.right != null) q.offer(node.right);
 }
-// Output: 1 2 3 4 5
+// 1 2 3 4 5
 ```
 
 ---
@@ -347,7 +384,8 @@ void dfs(GraphNode node) {
         dfs(nei);
     }
 }
-dfs(node0); // Output: 0 1 2
+
+dfs(node0); // 0 1 2
 
 BFS:
 
@@ -366,5 +404,5 @@ while (!q.isEmpty()) {
         }
     }
 }
-// Output: 0 1 2
+// 0 1 2
 ```
