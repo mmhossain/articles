@@ -19,8 +19,7 @@ Each article is stored as a standalone `.md` file inside the `articles/` directo
 
 ## 📄 License
 
-This repository is licensed under the MIT License. Feel free to reuse and modify.
-
+This repository is licensed under the MIT License.
 ---
 
 Happy learning and good luck with your interviews! 🚀
