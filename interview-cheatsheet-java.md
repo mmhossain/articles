@@ -72,6 +72,9 @@ Arrays.fill(nums, 7); // nums = [7, 7, 7, 7, 7]
 Arrays.sort(fixed);   // fixed = [1, 2, 3]
 int idx = Arrays.binarySearch(fixed, 2); // idx = 1
 String str = Arrays.toString(fixed);     // "[1, 2, 3]"
+
+for (int i = 0; i < nums.length; i++) { System.out.print(nums[i] + " "); }
+for (int num : nums) { System.out.print(num + " "); }
 ```
 
 ---
@@ -94,18 +97,13 @@ s.lastIndexOf("l");         // 9
 s.replace("l", "L");        // heLLo worLd
 s.isEmpty();                // false
 String[] parts = s.split(" ");  // ["hello", "world"]
+String joined = String.join("-", parts);
+System.out.println(joined); // hello-world
 
 StringBuilder sb = new StringBuilder();
 sb.append("hi");
 sb.append(" there");
 System.out.println(sb.toString());  // hi there
-```
-
-Iteration:
-
-```java
-for (int i = 0; i < nums.length; i++) { System.out.print(nums[i] + " "); }
-for (int num : nums) { System.out.print(num + " "); }
 ```
 
 ---
@@ -122,13 +120,41 @@ list.removeLast();       // [20]
 System.out.println(list.get(0));       // 20
 System.out.println(list.contains(20)); // true
 System.out.println(list.size());       // 1
-```
 
-Iteration:
-
-```java
+// Using for-each loop
 for (int val : list) {
     System.out.print(val + " ");
+}
+
+// Using index-based loop
+for (int i = 0; i < list.size(); i++) {
+    System.out.print(list.get(i) + " ");
+}
+
+// Using iterator with while loop
+Iterator<Integer> it = list.iterator();
+while (it.hasNext()) {
+    System.out.print(it.next() + " ");
+}
+
+class ListNode {
+    int val;
+    ListNode next;
+
+    ListNode(int x) {
+        val = x;
+    }
+}
+
+ListNode head = new ListNode(1) {
+    next = new ListNode(2) {
+        next = new ListNode(3)
+    }
+};
+
+while (head != null) {
+    System.out.print(head.val + " -> ");
+    head = head.next;
 }
 ```
 
@@ -202,12 +228,8 @@ System.out.println(ts.ceiling(15)); // 20
 for (int val : ts) {
     System.out.print(val + " ");
 }
-```
 
-Custom:
-
-```java
-TreeSet<Integer> desc = new TreeSet<>((a,b)->b-a);
+TreeSet<Integer> desc = new TreeSet<>((a,b) -> b - a);
 desc.add(5);
 desc.add(10);
 desc.add(1);
@@ -247,7 +269,7 @@ while (!minHeap.isEmpty()) {
     System.out.print(minHeap.poll() + " ");  // 2 3
 }
 
-PriorityQueue<Integer> maxHeap = new PriorityQueue<>((a,b)->b-a);
+PriorityQueue<Integer> maxHeap = new PriorityQueue<>((a,b) -> b - a);
 maxHeap.add(3);
 maxHeap.add(1);
 maxHeap.add(2);
@@ -256,11 +278,7 @@ System.out.println(maxHeap.poll()); // 3
 while (!maxHeap.isEmpty()) {
     System.out.print(maxHeap.poll() + " ");  // 2 1
 }
-```
 
-Custom object:
-
-```java
 class Task {
     int deadline, duration;
     Task(int d, int t) { deadline = d; duration = t; }
@@ -285,7 +303,9 @@ class Trie {
         TrieNode node = root;
         for (char c : word.toCharArray()) {
             int i = c - 'a';
-            if (node.children[i] == null) node.children[i] = new TrieNode();
+            if (node.children[i] == null)
+                node.children[i] = new TrieNode();
+
             node = node.children[i];
         }
         node.isEnd = true;
@@ -295,14 +315,18 @@ class Trie {
         TrieNode node = root;
         for (char c : word.toCharArray()) {
             int i = c - 'a';
-            if (node.children[i] == null) return false;
+            if (node.children[i] == null)
+                return false;
+
             node = node.children[i];
         }
         return node.isEnd;
     }
 
     void dfs(TrieNode node, String path) {
-        if (node.isEnd) System.out.println(path);
+        if (node.isEnd)
+            System.out.println(path);
+
         for (int i = 0; i < 26; i++) {
             if (node.children[i] != null) {
                 dfs(node.children[i], path + (char)('a' + i));
