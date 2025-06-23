@@ -50,6 +50,17 @@ if (a > 0 && b > 0) {
 
 ---
 
+### ✅ Loops
+
+```java
+for (int i = 0; i < 5; i++) {}
+for (int n : array) {}
+while (condition) {}
+do {} while (condition);
+```
+
+---
+
 ### ✅ Arrays
 
 ```java
