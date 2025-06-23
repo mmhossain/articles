@@ -1,4 +1,4 @@
-## Java Coding Interview Cheatsheet
+## Coding Interview Cheatsheet - Java
 
 ### ✅ Datatypes and Variables
 
