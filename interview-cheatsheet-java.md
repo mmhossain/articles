@@ -79,6 +79,30 @@ for (int num : nums) { System.out.print(num + " "); }
 
 ---
 
+### ✅ List/ArrayList
+
+```java
+List<String> names = new ArrayList<>();
+names.add("Alice");
+names.add("Bob");
+names.add("Charlie");
+System.out.println(names);                // [Alice, Bob, Charlie]
+
+names.remove("Bob");
+System.out.println(names);                // [Alice, Charlie]
+
+System.out.println(names.get(0));         // Alice
+System.out.println(names.contains("Bob")); // false
+System.out.println(names.size());         // 2
+
+// Iteration using for-each
+for (String name : names) {
+    System.out.print(name + " ");         // Alice Charlie
+}
+```
+
+---
+
 ### ✅ Strings
 
 ```java
